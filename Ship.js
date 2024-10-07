@@ -1,38 +1,37 @@
 export class Ship {
     #length
-    #health
+    #numHit
     #sunk
 
     constructor(length) {
         this.#length = length;
-        this.#health = length;
+        this.#numHit = 0;
         this.#sunk = false;
     };
 
     hit() {
-        if (this.#health === 0) {
+        if (this.#numHit >= this.#length) {
             this.#sunk = true;
             return;
         };
 
-        this.#health -= 1;
+        this.#numHit += 1;
 
         return;
     };
 
     isSunk() {
-        return this.#sunk;
+        return this.#numHit === this.#length ? true : false;
     };
 
     reset() {
-        this.#health = this.#length;
+        this.#numHit = 0;
         this.#sunk = false;
     };
-
-    get health() {
-        return this.#health;
+ 
+    get numHit() {
+        return this.#numHit;
     };
-
     
     get length() {
         return this.#length;
